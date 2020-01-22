@@ -19,6 +19,7 @@ package org.gradle.api.internal.provider
 import com.google.common.collect.ImmutableMap
 import org.gradle.internal.Describables
 import org.gradle.internal.state.ManagedFactory
+import org.gradle.util.TextUtil
 import org.spockframework.util.Assert
 
 class MapPropertySpec extends PropertySpec<Map<String, String>> {
@@ -351,8 +352,8 @@ class MapPropertySpec extends PropertySpec<Map<String, String>> {
 
         then:
         def e = thrown(IllegalStateException)
-        e.message == """Cannot query the value of ${displayName} because it has no value available.
-The value of this property is derived from: <source>"""
+        e.message == TextUtil.toPlatformLineSeparators("""Cannot query the value of ${displayName} because it has no value available.
+The value of this property is derived from: <source>""")
     }
 
     def "property has no value when adding a map provider with no value"() {
@@ -385,8 +386,8 @@ The value of this property is derived from: <source>"""
 
         then:
         def e = thrown(IllegalStateException)
-        e.message == """Cannot query the value of ${displayName} because it has no value available.
-The value of this property is derived from: <source>"""
+        e.message == TextUtil.toPlatformLineSeparators("""Cannot query the value of ${displayName} because it has no value available.
+The value of this property is derived from: <source>""")
     }
 
     def "can set to null value to discard value"() {
